@@ -18,16 +18,31 @@ my_put=0
 my_call=0
 
 # ---------------------------------------------------------------------
-def buy_share(num,price):
+def print_trasact():
 	global transact_cnt
+
+	transact_cnt+=1
+	print('Transcation #'+str(transact_cnt)+' ------------')
+
+# ---------------------------------------------------------------------
+def buy_share(num,price):
 	global total_shares
 	global total_cost
 
-	transact_cnt+=1
 	total_shares+=num
 	total_cost+=(price*num)
-	print('Transcation #'+str(transact_cnt))
-	print('Transact: Buy '+str(num)  +' shares @'+str(price)+'$/share')
+	print_trasact()
+	print('Transact: Buy '+str(num)  +' shares @$'+str(price)+'/share')
+
+# ---------------------------------------------------------------------
+def buy_put(num,price,cost):
+	global total_cost
+	global my_put
+
+	my_put=price
+	total_cost+=(num*cost*100)
+	print_trasact()
+	print('Transact: Buy put @'+str(cost*100)+'$/100 shares')
 
 # ---------------------------------------------------------------------
 def print_balance(price):
@@ -38,9 +53,9 @@ def print_balance(price):
 
 	max_loss=my_put*total_shares-total_cost
 	cur_gain=price*total_shares-total_cost
-	print('Total Shares: '+str(total_shares)+' shares @'+str(total_cost/total_shares)+'$/share')
-	print('Min Loss %: '+str(100.0*max_loss/total_cost)+'% Max Loss '+str(max_loss))
-	print('Cur Gain %: '+str(100.0*cur_gain/total_cost)+'% Gain Loss '+str(cur_gain))
+	print('Total Shares: '+str(total_shares)+' shares @$'+str(total_cost/total_shares)+'/share')
+	print('Min Loss %: '+str(100.0*max_loss/total_cost)+'% Max Loss $'+str(max_loss))
+	print('Cur Gain %: '+str(100.0*cur_gain/total_cost)+'% Gain Loss $'+str(cur_gain))
 	
 # ---------------------------------------------------------------------
 # Simulation 
@@ -49,29 +64,15 @@ buy_share(33,cur_price)
 print_balance(cur_price)
 
 # First buy
-transact_cnt+=1
 cur_price=base_price*(1+buy1_per/100.0)
-cur_shares=33
-total_shares+=cur_shares
-total_cost+=(cur_price*cur_shares)
-print('Transcation #'+str(transact_cnt))
+buy_share(33,cur_price)
 print_balance(cur_price)
 
-cur_put_base=put_price
-cur_put_price=put_cost
-my_put=cur_put_base
-total_cost+=(cur_put_price*100)
-print('Transact: Buy put @'+str(cur_put_price*100)+'$/100 shares')
+buy_put(1,put_price,put_cost)
 print_balance(cur_price)
 
 # Second buy
-transact_cnt+=1
 cur_price=base_price*(1+buy2_per/100.0)
-cur_shares=34
-total_shares+=cur_shares
-total_cost+=(cur_price*cur_shares)
-print('Transcation #'+str(transact_cnt))
-print('Transact: Buy '+str(cur_shares)+' shares @'+str(cur_price)+'$/share')
-print('Transact: Buy put @'+str(cur_put_price*100)+'$/100 shares')
+buy_share(34,cur_price)
 print_balance(cur_price)
 
