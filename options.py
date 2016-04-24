@@ -58,23 +58,27 @@ def print_balance(price):
 	print('Cur Gain %: '+str(100.0*cur_gain/total_cost)+'% Gain Loss $'+str(cur_gain))
 	
 # ---------------------------------------------------------------------
-# Simulation 
-# Buy stock 1
-cur_price=100
-buy_share(cur_price,33)
-print_balance(cur_price)
+def scenario1():
+	# Buy stock 1
+	cur_price=100
+	buy_share(cur_price,33)
+	print_balance(cur_price)
 
-# Buy stock 2
-cur_price=80
-buy_share(cur_price,33)
-print_balance(cur_price)
+	# Buy stock 2
+	cur_price=80
+	buy_share(cur_price,33)
+	print_balance(cur_price)
 
-# Buy put
-cur_price=110
-buy_put(110,5)
-print_balance(cur_price)
+	# Buy put
+	cur_price=110
+	buy_put(110,5)
+	print_balance(cur_price)
 
-# Buy stock 3
-cur_price=120
-buy_share(cur_price,34)
-print_balance(cur_price)
+	# Buy stock 3
+	cur_price=120
+	buy_share(cur_price,34)
+	print_balance(cur_price)
+
+# ---------------------------------------------------------------------
+# Simutlations 
+scenario1()
