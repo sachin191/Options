@@ -25,7 +25,7 @@ def print_trasact():
 	print('Transcation #'+str(transact_cnt)+' ------------')
 
 # ---------------------------------------------------------------------
-def buy_share(num,price):
+def buy_share(price,num):
 	global total_shares
 	global total_cost
 
@@ -35,12 +35,12 @@ def buy_share(num,price):
 	print('Transact: Buy '+str(num)  +' shares @$'+str(price)+'/share')
 
 # ---------------------------------------------------------------------
-def buy_put(num,price,cost):
+def buy_put(price,cost):
 	global total_cost
 	global my_put
 
 	my_put=price
-	total_cost+=(num*cost*100)
+	total_cost+=(cost*100)
 	print_trasact()
 	print('Transact: Buy put @'+str(cost*100)+'$/100 shares')
 
@@ -59,20 +59,22 @@ def print_balance(price):
 	
 # ---------------------------------------------------------------------
 # Simulation 
-cur_price=base_price
-buy_share(33,cur_price)
+# Buy stock 1
+cur_price=100
+buy_share(cur_price,33)
 print_balance(cur_price)
 
-# First buy
-cur_price=base_price*(1+buy1_per/100.0)
-buy_share(33,cur_price)
+# Buy stock 2
+cur_price=80
+buy_share(cur_price,33)
 print_balance(cur_price)
 
-buy_put(1,put_price,put_cost)
+# Buy put
+cur_price=110
+buy_put(110,5)
 print_balance(cur_price)
 
-# Second buy
-cur_price=base_price*(1+buy2_per/100.0)
-buy_share(34,cur_price)
+# Buy stock 3
+cur_price=120
+buy_share(cur_price,34)
 print_balance(cur_price)
-
