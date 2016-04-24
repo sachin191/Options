@@ -58,7 +58,7 @@ def print_balance(price):
 	print('Cur Gain %: '+str(100.0*cur_gain/total_cost)+'% Gain Loss $'+str(cur_gain))
 	
 # ---------------------------------------------------------------------
-def scenario1():
+def scenario_low_then_high():
 	# Buy stock 1
 	cur_price=100
 	buy_share(cur_price,33)
@@ -80,5 +80,74 @@ def scenario1():
 	print_balance(cur_price)
 
 # ---------------------------------------------------------------------
+def scenario_high_then_high():
+	# Buy stock 1
+	cur_price=100
+	buy_share(cur_price,33)
+	print_balance(cur_price)
+
+	# Buy stock 2
+	cur_price=120
+	buy_share(cur_price,33)
+	print_balance(cur_price)
+
+	# Buy put
+	cur_price=120
+	buy_put(110,5)
+	print_balance(cur_price)
+
+	# Buy stock 3
+	cur_price=140
+	buy_share(cur_price,34)
+	print_balance(cur_price)
+
+# ---------------------------------------------------------------------
+def scenario_low_then_low():
+	# Buy stock 1
+	cur_price=100
+	buy_share(cur_price,33)
+	print_balance(cur_price)
+
+	# Buy stock 2
+	cur_price=80
+	buy_share(cur_price,33)
+	print_balance(cur_price)
+
+	# Buy put
+	cur_price=80
+	buy_put(90,15)
+	print_balance(cur_price)
+
+	# Buy stock 3
+	cur_price=60
+	buy_share(cur_price,34)
+	print_balance(cur_price)
+
+# ---------------------------------------------------------------------
+def scenario_high_then_low():
+	# Buy stock 1
+	cur_price=100
+	buy_share(cur_price,33)
+	print_balance(cur_price)
+
+	# Buy stock 2
+	cur_price=120
+	buy_share(cur_price,33)
+	print_balance(cur_price)
+
+	# Buy put
+	cur_price=120
+	buy_put(110,5)
+	print_balance(cur_price)
+
+	# Buy stock 3
+	cur_price=80
+	buy_share(cur_price,34)
+	print_balance(cur_price)
+
+# ---------------------------------------------------------------------
 # Simutlations 
-scenario1()
+# scenario_low_then_high()
+# scenario_high_then_high()
+# scenario_low_then_low()
+scenario_high_then_low()
